@@ -8,8 +8,16 @@ const currentDayElement = document.querySelector('[data-testid="currentDayOfTheW
 currentDayElement.textContent = currentDay;
 
 // Get the current UTC time in milliseconds
-const currentUTCTimeElement = document.querySelector('[data-testid="currentUTCTime"]');
-const currentUTCTime = new Date.now().toISOString(); // This generates the current UTC time in milliseconds
+// Function to update and display the current UTC time in milliseconds
+function updateUTCTime() {
+    const currentUTCTimeElement = document.querySelector('[data-testid="currentUTCTime"]');
+    
+    // Update the time in milliseconds every millisecond
+    setInterval(function () {
+        const currentUTCTime = Date.now(); // Get the current UTC time in milliseconds
+        currentUTCTimeElement.textContent = currentUTCTime;
+    }, 1); // Update every millisecond
+}
 
-// Display the current UTC time on the webpage
-currentUTCTimeElement.textContent = currentUTCTime;
+// // Call the updateUTCTime function when the page loads
+window.onload = updateUTCTime;
